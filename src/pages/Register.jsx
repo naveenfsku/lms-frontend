@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -17,23 +17,25 @@ function Register() {
     setMessage("");
 
     try {
-      await axios.post("http://127.0.0.1:8000/api/auth/register/", {
+      await API.post("auth/register/", {
         username,
         password,
         role,
       });
 
-      if (role === "MENTOR") {
-        setMessage("Registration successful. Wait for admin approval.");
-      } else {
-        setMessage("Registration successful. You can login now.");
-      }
+      setMessage(
+        role === "MENTOR"
+          ? "Registration successful. Wait for admin approval."
+          : "Registration successful. You can login now."
+      );
 
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       setError("Registration failed. Username may already exist." , err);
     }
   };
+
+  
 
   return (
     <div style={styles.container}>
