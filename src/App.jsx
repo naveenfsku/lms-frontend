@@ -19,7 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         <Route
-          path="/student"
+          path="/student-dashboard"
           element={
             <ProtectedRoute allowedRoles={["STUDENT"]}>
               <StudentDashboard />
@@ -37,7 +37,7 @@ function App() {
         />
 
         <Route
-          path="/mentor"
+          path="/mentor-dashboard"
           element={
             <ProtectedRoute allowedRoles={["MENTOR"]}>
               <MentorDashboard />
